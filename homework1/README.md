@@ -65,3 +65,5 @@ if (x > 2 || !String.matches(f(x))) {
 ```
 Please note that the question asked for an abstract syntax tree and not a parse tree. If you give a parse tree, you will get a zero on the problem.
 
+<img src="https://github.com/mwflickner/cmsi488/blob/master/homework1/problem4ast.png" width="1000">
+
