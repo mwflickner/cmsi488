@@ -51,33 +51,36 @@ Write the micro and macrosyntax of this language.
 ###Solution
 
 ### Macrosyntax
-
-PROGRAM     → BLOCK, EOF
-BLOCK       → (SKIP)*(FUNDEC(SKIP)*EXP+(SKIP))*
-FUNDEC      → 'FUN' ID((ID,)*ID) BODY
-BODY        → EXP+ 
-FUNCALL     → ID
+```
+PROGRAM     → BLOCK EOF
+BLOCK       → (SKIP)* (FUNDEC (SKIP)* EXP+ (SKIP))*
+FUNDEC      → 'FUN' ID ‘(‘ ( ( ID ‘,’ )* ID )? ‘)’ ‘{‘ BODY ‘}’
+BODY        → (EXP  SEMI)+ 
+FUNCALL     → ID ‘(‘ ( ( EXP ‘,’ )* EXP)? ‘)’
 
 EXP     → EXP2 | CONDITIONAL
-EXP2    → 
-EXP     → NUMLIT | STRLIT | ID | CALL | BLOCK | (EXP)
-
-CONDITIONAL → BLOCK 'IF' CONDITION 'ELSE' BLOCK
-CONDITION   → (ID | NUMLIT) RELOP (ID | NUMLIT)
-
+CONDITIONAL → EXP2 'IF' EXP2 ‘ELSE' EXP2
+EXP2   → EXP3 (ADDOP EXP3)* | CONDITION
+EXP3   → EXP4 (MULOP EXP4 )*
+EXP4   → (NEGOP)? EXP5
+EXP5   → EXP6  | NUMLIT (FACT)?
+EXP6   → NUMLIT | FUNCALL | ID | ‘(‘ EXP ’)’ | (SKIP* EXP SKIP*) | STRLIT
+```
 ### Microsyntax
-
+```
 SKIP    → (p{Zs})+
-RELOP   → ('<' | '>' | '==' |'>=' | '<=' | '!=')
+MULOP  → (‘*’ | ‘/’)
+ADDOP → (‘+’ | ‘-’)
 NEGOP   → '-'
 FACT    → '!'
-STRLIT  → "[\"\'\r\n\\\uDIGIT{4}]*"
-NUMLIT  → (NEGOP)?, DIGIT+, ([Ee], NEGOP?, DIGIT+)?
-ID      → (LETTER | $)+, (LETTER | DIGIT | '_' | '$' | '@')*
+KEYWORDS → (‘IF’ | ‘THEN’ | ‘FUN’)
+STRLIT  → "[\"\'\r\n\\\uDIGIT{4}]*" - KEYWORDS
+NUMLIT  → (NEGOP)? DIGIT+ ([Ee] NEGOP? DIGIT+)?
+ID      → (LETTER | $)+ (LETTER | DIGIT | '_' | '$' | '@')*
 DIGIT   → '[\p{Nd}]'
 LETTER  → [\p{L}]
 EOF     → '@EOF'
-
+```
 ##4.
 Give an abstract syntax tree for the following Java code fragment:
 ```
