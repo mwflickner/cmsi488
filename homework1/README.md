@@ -45,6 +45,8 @@ Exp4 → Exp5 ('**'  Exp5)?  |  'not' Exp5  |  'abs' Exp5
 Explain why this choice was made. Also, give an abstract syntax tree for the expression -8 * 5 and explain how this is similar to and how it is different from the alternative of dropping the negation from Exp2 and adding - Exp5 to Exp4.
 
 ###Solution
+The negative sign is optional so adding negatives is the same as subtraction. This allows for comments to not be treated as expressions. If negation is required, it can be done using an addop. Dropping the negation from Exp2 and adding - Exp5 to Exp4 just multiplies by -1.
+
 <img src="https://github.com/mwflickner/cmsi488/blob/master/homework1/problem2ast.png" width="200">
 
 ##3.
