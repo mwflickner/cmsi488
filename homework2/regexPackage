@@ -22,7 +22,7 @@ class Regex {
     }
 
     static isBinaryNumberDivisibleBy16(binaryString) {
-
+        /^([0-1]*0000)$/.test(binaryString);
     }
 
     static isDecimal2Through36(number) {
@@ -33,7 +33,7 @@ class Regex {
 
     }
 
-    static isLatinLetterStringWithoutFileFindOrForLookarounds(letterString) {
+    static isLatinLetterStringWithoutFileFindOrForWithLookarounds(letterString) {
 
     }
 
@@ -47,9 +47,13 @@ var assert = (exp) => {
 }
 
 var testRegexes = () => {
-    assert(Regex.isDecimal2Through36("2"));
-    assert(Regex.isDecimal2Through36("36"));
-    assert(Regex.isDecimal2Through36("7"));
-    assert(!Regex.isDecimal2Through36("0"));
-    assert(!Regex.isDecimal2Through36("37"));
+    // assert(Regex.isDecimal2Through36("2"));
+    // assert(Regex.isDecimal2Through36("36"));
+    // assert(Regex.isDecimal2Through36("7"));
+    // assert(!Regex.isDecimal2Through36("0"));
+    // assert(!Regex.isDecimal2Through36("37"));
+
+    assert(Regex.isBinaryNumberDivisibleBy16("10000"));
+    assert(!Regex.isBinaryNumberDivisibleBy16("12000"))
+    assert(!Regex.isBinaryNumberDivisibleBy16("1000"));
 }();
