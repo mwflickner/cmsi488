@@ -1,0 +1,58 @@
+'use strict';
+
+class Regex {
+    static isCanadianPostalCode(postalCode) {
+
+    }
+
+    static isVisaCreditCardNumber(creditCardNumber) {
+
+    }
+
+    static isMastercardCreditCardNumber(creditCardNumber) {
+        
+    }
+
+    static isAda95NumericLiteral(creditCardNumber) {
+        
+    }
+
+    static isMastercardCreditCardNumber(creditCardNumber) {
+        
+    }
+
+    static isAllBasicLatinLetters(letterString) {
+
+    }
+
+    static isBinaryNumberDivisibleBy16(binaryString) {
+
+    }
+
+    static isDecimal2Through36(number) {
+        /[^2-9]|[^0-3][^0-6]/.test(number);
+    }
+
+    static isMlStyleComment(string) {
+
+    }
+
+    static isLatinLetterStringWithoutFileFindOrForLookarounds(letterString) {
+
+    }
+
+    static isLatinLetterStringWithoutFileFindOrForNoLookarounds(letterString) {
+
+    }
+}
+var assert = function(exp) {
+  console.assert(exp);
+}
+
+var testRegexes = function() {
+    assert(Regex.isDecimal2Through36("2"));
+    assert(Regex.isDecimal2Through36("36"));
+    assert(Regex.isDecimal2Through36("7"));
+    assert(!Regex.isDecimal2Through36("0"));
+    assert(!Regex.isDecimal2Through36("37"));
+}()
