@@ -18,7 +18,7 @@ class Regex {
     }
 
     static isAllBasicLatinLetters(letterString) {
-
+        return /^([a-zA-Z]{1,2}|[a-zA-Z][oO][^oO]|[a-zA-Z][^oO][a-zA-Z]|[a-zA-Z]{4,})$/
     }
 
     static isBinaryNumberDivisibleBy16(binaryString) {
