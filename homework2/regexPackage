@@ -13,8 +13,8 @@ class Regex {
         return /^5[1-5][0-9]{14}$/.test(creditCardNumber);
     }
 
-    static isAda95NumericLiteral(creditCardNumber) {
-        
+    static isAda95NumericLiteral(string) {
+        return /^d+(_\d+)*#[\dA-F](_[\dA-F]+)*(\.[\dA-F]+(_[\dA-F]+)*)?#(E[\+\-]?\d+(_\d)*)?|\d+(_\d+)*(\.\d(_\d+)*)?(E[\+\-]?\d+(_\d)*)?/.test(string);
     }
 
     static isAllBasicLatinLetters(letterString) {
@@ -69,6 +69,19 @@ var testRegexes = () => {
     assert(!Regex.isMastercardCreditCardNumber(discover1));
     assert(!Regex.isMastercardCreditCardNumber(americanExpress1));
 
+    assert(Regex.isAda95NumericLiteral("2#101#"));
+    assert(Regex.isAda95NumericLiteral("9.84E1"));
+    assert(Regex.isAda95NumericLiteral("9.84E-1"));
+    assert(Regex.isAda95NumericLiteral("984.0e-1"));
+    assert(Regex.isAda95NumericLiteral("1_900E+0"));
+    assert(Regex.isAda95NumericLiteral("_1900E+0"));
+    assert(Regex.isAda95NumericLiteral("1_900_E+0"));
+    assert(Regex.isAda95NumericLiteral("1_900__E+0"));
+    assert(Regex.isAda95NumericLiteral("16#B#E2"));
+    assert(!Regex.isAda95NumericLiteral("hello"));
+    assert(!Regex.isAda95NumericLiteral(" "));
+    assert(!Regex.isAda95NumericLiteral("*"));
+
     assert(Regex.isDecimal2Through36("2"));
     assert(Regex.isDecimal2Through36("36"));
     assert(Regex.isDecimal2Through36("7"));
@@ -96,4 +109,6 @@ var testRegexes = () => {
     assert(Regex.isLatinLetterStringWithoutFileFindOrForWithLookarounds("Afile"));
     assert(Regex.isLatinLetterStringWithoutFileFindOrForWithLookarounds("hello"));
     assert(Regex.isLatinLetterStringWithoutFileFindOrForWithLookarounds("world"));
+
+    console.log("All tests passed.")
 }();
