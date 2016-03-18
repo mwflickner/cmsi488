@@ -2,15 +2,15 @@
 
 class Regex {
     static isCanadianPostalCode(postalCode) {
-
+        /^[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1} *\d{1}[A-Z]{1}\d{1}$/.test(postalCode);
     }
 
     static isVisaCreditCardNumber(creditCardNumber) {
-
+        /^4[0-9]{12}(?:[0-9]{3})?$/.test(creditCardNumber);
     }
 
     static isMastercardCreditCardNumber(creditCardNumber) {
-        
+        /^5[1-5][0-9]{14}$/.test(creditCardNumber);
     }
 
     static isAda95NumericLiteral(creditCardNumber) {
@@ -47,9 +47,31 @@ var assert = (exp) => {
 }
 
 var testRegexes = () => {
-    assert(Regex.isDecimal2Through36("2"));
-    assert(Regex.isDecimal2Through36("36"));
-    assert(Regex.isDecimal2Through36("7"));
+    var ohCanada1 = "A0A 0A5"
+    var visa1 = "4042433464929277";
+    var visa2 = "4539172189352619";
+    var masterCard1 = "5322548477306334";
+    var masterCard2 = "5165825595889262"
+    var discover1 = "6011676854519601";
+    var americanExpress1 = "378445367881951";
+
+    //assert(Regex.isVisaCreditCardNumber(visa1));
+    //assert(Regex.isVisaCreditCardNumber(visa2));
+    assert(!Regex.isVisaCreditCardNumber(masterCard1));
+    assert(!Regex.isVisaCreditCardNumber(masterCard2));
+    assert(!Regex.isVisaCreditCardNumber(discover1));
+    assert(!Regex.isVisaCreditCardNumber(americanExpress1));
+    
+    //assert(Regex.isMastercardCreditCardNumber(masterCard1));
+    //assert(Regex.isMastercardCreditCardNumber(masterCard2));
+    assert(!Regex.isMastercardCreditCardNumber(visa1));
+    assert(!Regex.isMastercardCreditCardNumber(visa2));
+    assert(!Regex.isMastercardCreditCardNumber(discover1));
+    assert(!Regex.isMastercardCreditCardNumber(americanExpress1));
+
+    //assert(Regex.isDecimal2Through36("2"));
+    //assert(Regex.isDecimal2Through36("36"));
+    //assert(Regex.isDecimal2Through36("7"));
     assert(!Regex.isDecimal2Through36("0"));
     assert(!Regex.isDecimal2Through36("37"));
 }();
