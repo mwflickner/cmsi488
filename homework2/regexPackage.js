@@ -18,7 +18,7 @@ class Regex {
     }
 
     static isAllBasicLatinLetters(letterString) {
-        return /^([a-zA-Z]{1,2}|[a-zA-Z][oO][^oO]|[a-zA-Z][^oO][a-zA-Z]|[a-zA-Z]{4,})$/
+        return /^([a-zA-Z]{1,2}|[a-zA-Z][oO][^oO]|[a-zA-Z][^oO][a-zA-Z]|[a-zA-Z]{4,})$/.test(letterString);
     }
 
     static isBinaryNumberDivisibleBy16(binaryString) {
@@ -78,9 +78,9 @@ var testRegexes = () => {
     assert(Regex.isAllBasicLatinLetters("hello"));
     assert(Regex.isAllBasicLatinLetters("HELLO"));
     assert(Regex.isAllBasicLatinLetters("Hello"));
-    //assert(!Regex.isAllBasicLatinLetters("Hello!"));
-    //assert(!Regex.isAllBasicLatinLetters("Boo"));
-    //assert(!Regex.isAllBasicLatinLetters("roo"));
+    assert(!Regex.isAllBasicLatinLetters("Hello!"));
+    assert(!Regex.isAllBasicLatinLetters("Boo"));
+    assert(!Regex.isAllBasicLatinLetters("roo"));
     assert(Regex.isAllBasicLatinLetters("root"));
 
     assert(Regex.isDecimal2Through36("2"));
