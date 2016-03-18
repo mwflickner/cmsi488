@@ -30,7 +30,7 @@ class Regex {
     }
 
     static isMlStyleComment(string) {
-
+        /^\(\*.*\*\)$/.test(string);
     }
 
     static isLatinLetterStringWithoutFileFindOrForWithLookarounds(letterString) {
@@ -38,7 +38,7 @@ class Regex {
     }
 
     static isLatinLetterStringWithoutFileFindOrForNoLookarounds(letterString) {
-
+        /^((?!file$|find$|for$)[a-zA-Z]*)$/.test(letterString);
     }
 }
 
@@ -47,13 +47,31 @@ var assert = (exp) => {
 }
 
 var testRegexes = () => {
-    // assert(Regex.isDecimal2Through36("2"));
-    // assert(Regex.isDecimal2Through36("36"));
-    // assert(Regex.isDecimal2Through36("7"));
-    // assert(!Regex.isDecimal2Through36("0"));
-    // assert(!Regex.isDecimal2Through36("37"));
+    assert(Regex.isDecimal2Through36("2"));
+    assert(Regex.isDecimal2Through36("36"));
+    assert(Regex.isDecimal2Through36("7"));
+    assert(!Regex.isDecimal2Through36("0"));
+    assert(!Regex.isDecimal2Through36("37"));
 
     assert(Regex.isBinaryNumberDivisibleBy16("10000"));
     assert(!Regex.isBinaryNumberDivisibleBy16("12000"))
     assert(!Regex.isBinaryNumberDivisibleBy16("1000"));
+
+    assert(!Regex.isLatinLetterStringWithoutFileFindOrForWithLookarounds("find"));
+    assert(!Regex.isLatinLetterStringWithoutFileFindOrForWithLookarounds("file"));
+    assert(!Regex.isLatinLetterStringWithoutFileFindOrForWithLookarounds("for"));
+    assert(Regex.isLatinLetterStringWithoutFileFindOrForWithLookarounds("finda"));
+    assert(Regex.isLatinLetterStringWithoutFileFindOrForWithLookarounds("findA"));
+    assert(Regex.isLatinLetterStringWithoutFileFindOrForWithLookarounds("afind"));
+    assert(Regex.isLatinLetterStringWithoutFileFindOrForWithLookarounds("Afind"));
+    assert(Regex.isLatinLetterStringWithoutFileFindOrForWithLookarounds("fora"));
+    assert(Regex.isLatinLetterStringWithoutFileFindOrForWithLookarounds("forA"));
+    assert(Regex.isLatinLetterStringWithoutFileFindOrForWithLookarounds("afor"));
+    assert(Regex.isLatinLetterStringWithoutFileFindOrForWithLookarounds("Afor"));
+    assert(Regex.isLatinLetterStringWithoutFileFindOrForWithLookarounds("filea"));
+    assert(Regex.isLatinLetterStringWithoutFileFindOrForWithLookarounds("fileA"));
+    assert(Regex.isLatinLetterStringWithoutFileFindOrForWithLookarounds("afile"));
+    assert(Regex.isLatinLetterStringWithoutFileFindOrForWithLookarounds("Afile"));
+    assert(Regex.isLatinLetterStringWithoutFileFindOrForWithLookarounds("hello"));
+    assert(Regex.isLatinLetterStringWithoutFileFindOrForWithLookarounds("world"));
 }();
