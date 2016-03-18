@@ -14,3 +14,12 @@
 ```
 ^5[1-5][0-9]{14}$ 
 ```
+1d) Ada 95 Numeric Literals
+
+decimal-literal 
+
+or based literal
+[\d_]+(\.[\d_]+)?[(E)\+?[\d_]+]
+
+1g) Decimal numerals in the range 2 through 36, inclusive.
+^([2-9]|[1-2]\d|3[0-6])$

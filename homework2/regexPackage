@@ -30,15 +30,15 @@ class Regex {
     }
 
     static isMlStyleComment(string) {
-        return /^\(\*.*\*\)$/.test(string);
+        return /^(\(\*.*\*\))$/.test(string);
     }
 
     static isLatinLetterStringWithoutFileFindOrForWithLookarounds(letterString) {
-
+        return /^((?!file$|find$|for$)[a-zA-Z]*)$/.test(letterString);
     }
 
     static isLatinLetterStringWithoutFileFindOrForNoLookarounds(letterString) {
-        return /^((?!file$|find$|for$)[a-zA-Z]*)$/.test(letterString);
+        
     }
 }
 
