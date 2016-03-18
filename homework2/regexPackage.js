@@ -18,7 +18,7 @@ class Regex {
     }
 
     static isAllBasicLatinLetters(letterString) {
-
+        return /^([a-zA-Z]{1,2}|[a-zA-Z][oO][^oO]|[a-zA-Z][^oO][a-zA-Z]|[a-zA-Z]{4,})$/.test(letterString);
     }
 
     static isBinaryNumberDivisibleBy16(binaryString) {
@@ -47,13 +47,19 @@ var assert = (exp) => {
 }
 
 var testRegexes = () => {
-    var ohCanada1 = "A0A 0A5"
+    var ohCanada1 = "A0A 0A5";
+    var winnipeg = "R3M 3K2";
+    var notOhCanada = "1A1 B4C";
     var visa1 = "4042433464929277";
     var visa2 = "4539172189352619";
     var masterCard1 = "5322548477306334";
     var masterCard2 = "5165825595889262"
     var discover1 = "6011676854519601";
     var americanExpress1 = "378445367881951";
+
+    assert(Regex.isCanadianPostalCode(ohCanada1));
+    assert(Regex.isCanadianPostalCode(winnipeg));
+    assert(!Regex.isCanadianPostalCode(notOhCanada));
 
     assert(Regex.isVisaCreditCardNumber(visa1));
     assert(Regex.isVisaCreditCardNumber(visa2));
@@ -81,6 +87,14 @@ var testRegexes = () => {
     assert(!Regex.isAda95NumericLiteral("hello"));
     assert(!Regex.isAda95NumericLiteral(" "));
     assert(!Regex.isAda95NumericLiteral("*"));
+
+    assert(Regex.isAllBasicLatinLetters("hello"));
+    assert(Regex.isAllBasicLatinLetters("HELLO"));
+    assert(Regex.isAllBasicLatinLetters("Hello"));
+    assert(!Regex.isAllBasicLatinLetters("Hello!"));
+    assert(!Regex.isAllBasicLatinLetters("Boo"));
+    assert(!Regex.isAllBasicLatinLetters("roo"));
+    assert(Regex.isAllBasicLatinLetters("root"));
 
     assert(Regex.isDecimal2Through36("2"));
     assert(Regex.isDecimal2Through36("36"));
